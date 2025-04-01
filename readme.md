@@ -92,7 +92,7 @@ Natours is a modern, full-stack web application for booking adventure tours. Bui
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/natours.git
+   git clone https://github.com/kartik3yaS/Tour-WebApp.git
    cd natours
    ```
 
@@ -201,19 +201,9 @@ The application uses a modern, responsive design with:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
 ## 👥 Authors
 
-- Your Name - Initial work - [YourGithub](https://github.com/yourusername)
-
-## 🙏 Acknowledgments
-
-- Jonas Schmedtmann for the original course and design inspiration
-- The MERN stack community
-- All contributors who helped with the project
+- Kartikeya Shukla - Initial work - [YourGithub](https://github.com/kartik3yaS)
 
 ---
 
