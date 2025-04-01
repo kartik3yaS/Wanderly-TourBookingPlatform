@@ -1,0 +1,373 @@
+/* src/styles/TourForm.css */
+.tour-form-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.tour-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.tour-form-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 28px;
+}
+
+.back-button {
+  background-color: #f5f5f5;
+  color: #555;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background-color: #eee;
+}
+
+.tour-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-section {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 25px;
+  border: 1px solid #eee;
+}
+
+.form-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #55c57a;
+  box-shadow: 0 0 0 2px rgba(85, 197, 122, 0.2);
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.input-help {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #777;
+}
+
+.file-input {
+  padding: 8px;
+  background-color: #f5f5f5;
+}
+
+.file-note {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+}
+
+.location-item {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.location-item h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #444;
+}
+
+.date-input {
+  flex: 1;
+}
+
+.add-button,
+.remove-button {
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-button {
+  background-color: #55c57a;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.add-button:hover {
+  background-color: #4caf50;
+}
+
+.remove-button {
+  background-color: #f8f8f8;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.remove-button:hover {
+  background-color: #fff5f5;
+}
+
+.remove-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cancel-button {
+  background-color: #f5f5f5;
+  color: #555;
+  border: 1px solid #ddd;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.cancel-button:hover {
+  background-color: #eee;
+}
+
+.submit-button {
+  background-color: #55c57a;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #4caf50;
+}
+
+.submit-button:disabled {
+  background-color: #a5d6b7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #fdf3f2;
+  color: #e74c3c;
+  padding: 12px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  background-color: #edf7ed;
+  color: #4caf50;
+  padding: 12px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.tour-form-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(85, 197, 122, 0.3);
+  border-radius: 50%;
+  border-top-color: #55c57a;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .tour-form-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .tour-form-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .submit-button,
+  .cancel-button {
+    width: 100%;
+  }
+}
+
+.file-input-container {
+  margin-top: 10px;
+}
+
+.image-preview-container {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.image-preview {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #eee;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview .remove-image {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.image-preview .remove-image:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.file-input-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.file-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-input-button {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #55c57a;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-input-button:hover {
+  background-color: #4caf50;
+}
+
+.selected-file-name {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}

@@ -1,0 +1,358 @@
+/* src/components/BookTour/BookingStyles.css */
+/* Booking Button */
+.book-tour-button {
+  background-color: #55c57a;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 100px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(85, 197, 122, 0.3);
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.book-tour-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(85, 197, 122, 0.4);
+}
+
+.book-tour-button:active {
+  transform: translateY(-1px);
+}
+
+/* Checkout Page */
+.checkout-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.checkout-header {
+  background-color: #55c57a;
+  color: white;
+  padding: 20px 30px;
+}
+
+.checkout-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.checkout-content {
+  padding: 30px;
+}
+
+.tour-summary {
+  display: flex;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 30px;
+}
+
+.tour-image {
+  width: 250px;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 30px;
+  flex-shrink: 0;
+}
+
+.tour-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour-info {
+  flex: 1;
+}
+
+.tour-info h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 24px;
+}
+
+.tour-details {
+  margin-bottom: 20px;
+}
+
+.tour-details p {
+  margin: 8px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #555;
+  margin-right: 5px;
+}
+
+.tour-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.price-value {
+  color: #55c57a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.price-value span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #777;
+}
+
+.payment-section {
+  margin-top: 20px;
+}
+
+.payment-section h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+}
+
+/* Payment Form */
+.payment-form {
+  margin-top: 20px;
+}
+
+.payment-error {
+  color: #e53935;
+  background-color: #ffebee;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.payment-button {
+  background-color: #55c57a;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.payment-button:hover {
+  background-color: #4caf50;
+}
+
+.payment-button:disabled {
+  background-color: #a5d6b7;
+  cursor: not-allowed;
+}
+
+/* Success Page */
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+}
+
+.success-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.success-icon {
+  margin-bottom: 20px;
+}
+
+.success-card h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.success-card p {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.booking-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.booking-details h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+.booking-details p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.booking-details span {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.view-bookings-btn,
+.home-btn {
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.view-bookings-btn {
+  background-color: #55c57a;
+  color: white;
+  border: none;
+}
+
+.view-bookings-btn:hover {
+  background-color: #4caf50;
+}
+
+.home-btn {
+  background-color: transparent;
+  color: #555;
+  border: 1px solid #ddd;
+}
+
+.home-btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* Loading States */
+.checkout-loading,
+.success-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(85, 197, 122, 0.3);
+  border-radius: 50%;
+  border-top-color: #55c57a;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.checkout-error {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #ffebee;
+  color: #d32f2f;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .tour-summary {
+    flex-direction: column;
+  }
+
+  .tour-image {
+    width: 100%;
+    height: 200px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .success-actions {
+    flex-direction: column;
+  }
+
+  .view-bookings-btn,
+  .home-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-container {
+    margin: 20px;
+  }
+
+  .checkout-header {
+    padding: 15px 20px;
+  }
+
+  .checkout-header h1 {
+    font-size: 22px;
+  }
+
+  .checkout-content {
+    padding: 20px;
+  }
+
+  .tour-info h2 {
+    font-size: 20px;
+  }
+
+  .price-value {
+    font-size: 20px;
+  }
+}
