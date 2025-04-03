@@ -41,18 +41,24 @@ const BookingForm = () => {
       const token = localStorage.getItem("token");
 
       // Fetch tours
-      const toursResponse = await fetch("http://localhost:5000/api/v1/tours", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const toursResponse = await fetch(
+        `${process.env.REACT_APP_API_URL}/tours`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       // Fetch users
-      const usersResponse = await fetch("http://localhost:5000/api/v1/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const usersResponse = await fetch(
+        `${process.env.REACT_APP_API_URL}/users`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!toursResponse.ok || !usersResponse.ok) {
         throw new Error("Failed to fetch required data");
@@ -75,7 +81,7 @@ const BookingForm = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/bookings/${bookingId}`,
+        `${process.env.REACT_APP_API_URL}/bookings/${bookingId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -121,8 +127,8 @@ const BookingForm = () => {
     try {
       const token = localStorage.getItem("token");
       const url = isEditMode
-        ? `http://localhost:5000/api/v1/bookings/${bookingId}`
-        : "http://localhost:5000/api/v1/bookings";
+        ? `${process.env.REACT_APP_API_URL}/bookings/${bookingId}`
+        : `${process.env.REACT_APP_API_URL}/bookings`;
       const method = isEditMode ? "PATCH" : "POST";
 
       const response = await fetch(url, {

@@ -21,7 +21,7 @@ const Dashboard = () => {
     const fetchTours = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/v1/tours", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/tours`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -56,7 +56,7 @@ const Dashboard = () => {
         try {
           const token = localStorage.getItem("token");
           const response = await fetch(
-            `http://localhost:5000/api/v1/bookings/create-booking-checkout?tour=${tour}&user=${user}&price=${price}`,
+            `${process.env.REACT_APP_API_URL}/bookings/create-booking-checkout?tour=${tour}&user=${user}&price=${price}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ const Dashboard = () => {
       setBookingsLoading(true);
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/v1/bookings/my-bookings",
+        `${process.env.REACT_APP_API_URL}/bookings/my-bookings`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -135,7 +135,7 @@ const Dashboard = () => {
       setReviewsLoading(true);
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/v1/reviews/my-reviews",
+        `${process.env.REACT_APP_API_URL}/reviews/my-reviews`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -443,7 +443,7 @@ const Dashboard = () => {
                     try {
                       const token = localStorage.getItem("token");
                       const response = await fetch(
-                        "http://localhost:5000/api/v1/users/updateMe",
+                        `${process.env.REACT_APP_API_URL}/users/updateMe`,
                         {
                           method: "PATCH",
                           headers: {
@@ -535,7 +535,7 @@ const Dashboard = () => {
 
                             const token = localStorage.getItem("token");
                             const response = await fetch(
-                              "http://localhost:5000/api/v1/users/updateMe",
+                              `${process.env.REACT_APP_API_URL}/users/updateMe`,
                               {
                                 method: "PATCH",
                                 headers: {
@@ -598,7 +598,7 @@ const Dashboard = () => {
                     try {
                       const token = localStorage.getItem("token");
                       const response = await fetch(
-                        "http://localhost:5000/api/v1/users/updateMyPassword",
+                        `${process.env.REACT_APP_API_URL}/users/updateMyPassword`,
                         {
                           method: "PATCH",
                           headers: {

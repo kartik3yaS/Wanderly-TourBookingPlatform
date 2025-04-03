@@ -23,7 +23,7 @@ const BookingSuccess = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/bookings/by-payment/${paymentIntent}`,
+        `${process.env.REACT_APP_API_URL}/bookings/by-payment/${paymentIntent}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

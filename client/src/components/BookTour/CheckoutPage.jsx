@@ -55,7 +55,7 @@ const CheckoutPage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/v1/tours/${tourId}`,
+          `${process.env.REACT_APP_API_URL}/tours/${tourId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -86,7 +86,7 @@ const CheckoutPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/v1/bookings/checkout-session",
+        `${process.env.REACT_APP_API_URL}/bookings/checkout-session`,
         {
           method: "POST",
           headers: {

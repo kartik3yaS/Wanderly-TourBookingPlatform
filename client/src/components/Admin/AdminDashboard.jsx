@@ -46,11 +46,14 @@ const AdminDashboard = () => {
           endpoint = "tours";
       }
 
-      const response = await fetch(`http://localhost:5000/api/v1/${endpoint}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/${endpoint}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -90,7 +93,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/tours/${tourId}`,
+        `${process.env.REACT_APP_API_URL}/tours/${tourId}`,
         {
           method: "DELETE",
           headers: {
@@ -122,7 +125,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/users/${userId}`,
+        `${process.env.REACT_APP_API_URL}/users/${userId}`,
         {
           method: "DELETE",
           headers: {
@@ -163,7 +166,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/bookings/${bookingId}`,
+        `${process.env.REACT_APP_API_URL}/bookings/${bookingId}`,
         {
           method: "DELETE",
           headers: {

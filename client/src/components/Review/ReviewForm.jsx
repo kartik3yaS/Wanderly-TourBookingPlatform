@@ -15,7 +15,7 @@ const ReviewForm = ({ tourId, onReviewSubmitted }) => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/v1/tours/${tourId}/reviews`,
+          `${process.env.REACT_APP_API_URL}/tours/${tourId}/reviews`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ const ReviewForm = ({ tourId, onReviewSubmitted }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/tours/${tourId}/reviews`,
+        `${process.env.REACT_APP_API_URL}/tours/${tourId}/reviews`,
         {
           method: "POST",
           headers: {

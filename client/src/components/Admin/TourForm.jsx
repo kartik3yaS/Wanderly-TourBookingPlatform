@@ -63,7 +63,7 @@ const TourForm = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/v1/tours/${tourId}`,
+        `${process.env.REACT_APP_API_URL}/tours/${tourId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -373,8 +373,8 @@ const TourForm = () => {
 
       // Determine if creating or updating
       const url = isEditMode
-        ? `http://localhost:5000/api/v1/tours/${tourId}`
-        : "http://localhost:5000/api/v1/tours";
+        ? `${process.env.REACT_APP_API_URL}/tours/${tourId}`
+        : `${process.env.REACT_APP_API_URL}/tours`;
 
       const method = isEditMode ? "PATCH" : "POST";
 

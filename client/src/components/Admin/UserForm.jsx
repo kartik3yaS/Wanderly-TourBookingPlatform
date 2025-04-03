@@ -46,7 +46,7 @@ const UserForm = () => {
       console.log("Fetching user data for ID:", userId);
 
       const response = await fetch(
-        `http://localhost:5000/api/v1/users/${userId}`,
+        `${process.env.REACT_APP_API_URL}/users/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -186,10 +186,10 @@ const UserForm = () => {
       let url, method;
 
       if (isEditMode) {
-        url = `http://localhost:5000/api/v1/users/${userId}`;
+        url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
         method = "PATCH";
       } else {
-        url = "http://localhost:5000/api/v1/users";
+        url = `${process.env.REACT_APP_API_URL}/users`;
         method = "POST";
       }
 

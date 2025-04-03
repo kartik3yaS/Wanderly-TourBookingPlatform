@@ -33,7 +33,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Implement CORS
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://tour-web-app-orpin.vercel.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
