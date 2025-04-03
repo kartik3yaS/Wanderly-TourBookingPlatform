@@ -27,8 +27,8 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     payment_method_types: ['card'],
     mode: 'payment',
     // Use a success URL that points to your frontend
-    success_url: `http://localhost:3000/dashboard?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
-    cancel_url: `http://localhost:3000/tour/${req.params.tourId}`,
+    success_url: `https://tour-web-app-orpin.vercel.app/dashboard?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
+    cancel_url: `https://tour-web-app-orpin.vercel.app/tour/${req.params.tourId}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourId,
     line_items: [

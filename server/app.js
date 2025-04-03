@@ -44,7 +44,7 @@ app.use(
 app.options(
   '*',
   cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://tour-web-app-orpin.vercel.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
