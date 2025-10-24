@@ -117,7 +117,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
 
     // If photo was uploaded, it will be processed by uploadUserPhoto and resizeUserPhoto middleware
     if (req.file) {
-      newUser.photo = req.file.filename;
+      // Photo is already set to Cloudinary URL by resizeUserPhoto middleware
       await newUser.save({ validateBeforeSave: false }); // Skip validation when just updating photo
     }
 
