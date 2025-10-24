@@ -95,7 +95,9 @@ const TourForm = () => {
         startDates: tour.startDates?.length
           ? tour.startDates.map((date) => {
               try {
-                return new Date(date).toISOString().split("T")[0];
+                // Handle both Date objects and date strings
+                const dateObj = date instanceof Date ? date : new Date(date);
+                return dateObj.toISOString().split("T")[0];
               } catch (e) {
                 console.error("Date parsing error:", e, date);
                 return "";
@@ -399,14 +401,13 @@ const TourForm = () => {
       formDataObj.append("summary", formData.summary);
       formDataObj.append("description", formData.description);
 
-      // Add start dates (convert to proper format)
-      formData.startDates.forEach((date, index) => {
-        if (date) {
-          // Convert DD-MM-YYYY to YYYY-MM-DD format
-          const [day, month, year] = date.split("-");
-          const isoDate = `${year}-${month}-${day}`;
-          formDataObj.append(`startDates[${index}]`, isoDate);
-        }
+      // Add start dates (send as individual date strings)
+      const validDates = formData.startDates.filter(date => date && date.trim() !== '');
+      console.log("Valid dates to send:", validDates);
+      validDates.forEach((date, index) => {
+        // Date input already gives us YYYY-MM-DD format, so we can use it directly
+        formDataObj.append(`startDates[${index}]`, date);
+        console.log(`Added startDates[${index}]:`, date);
       });
 
       // Add start location with proper GeoJSON format
