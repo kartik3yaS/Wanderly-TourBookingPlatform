@@ -300,6 +300,44 @@ const TourForm = () => {
     setSuccess("");
     setLoading(true);
 
+    // Basic validation
+    if (formData.name.length < 10 || formData.name.length > 40) {
+      setError("Tour name must be between 10 and 40 characters");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.duration <= 0) {
+      setError("Duration must be greater than 0");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.maxGroupSize <= 0) {
+      setError("Max group size must be greater than 0");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.price <= 0) {
+      setError("Price must be greater than 0");
+      setLoading(false);
+      return;
+    }
+
+    if (!formData.summary.trim()) {
+      setError("Summary is required");
+      setLoading(false);
+      return;
+    }
+
+    // Validate coordinates
+    if (formData.startLocation.coordinates[0] === 0 && formData.startLocation.coordinates[1] === 0) {
+      setError("Please set start location coordinates");
+      setLoading(false);
+      return;
+    }
+
     try {
       const token = localStorage.getItem("token");
 
@@ -388,7 +426,8 @@ const TourForm = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to save tour");
+        console.error("Tour creation error:", errorData);
+        throw new Error(errorData.message || errorData.error?.message || "Failed to save tour");
       }
 
       const data = await response.json();
