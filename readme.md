@@ -1,6 +1,6 @@
 # Natours - Adventure Tours Application
 
-![Natours Logo](client/public/logo.png)
+![Natours Logo](https://res.cloudinary.com/dh44xrr1z/image/upload/v1761305994/tours/tours/tour-6-cover.jpg)
 
 ## 🌟 Overview
 
