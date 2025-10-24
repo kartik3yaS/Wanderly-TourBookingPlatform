@@ -302,7 +302,9 @@ const TourForm = () => {
 
     // Basic validation
     if (formData.name.length < 10 || formData.name.length > 40) {
-      setError(`Tour name must be between 10 and 40 characters (current: ${formData.name.length})`);
+      setError(
+        `Tour name must be between 10 and 40 characters (current: ${formData.name.length})`
+      );
       setLoading(false);
       return;
     }
@@ -331,8 +333,23 @@ const TourForm = () => {
       return;
     }
 
+    if (formData.summary.length > 500) {
+      setError(`Summary is too long (max 500 characters, current: ${formData.summary.length})`);
+      setLoading(false);
+      return;
+    }
+
+    if (formData.description && formData.description.length > 2000) {
+      setError(`Description is too long (max 2000 characters, current: ${formData.description.length})`);
+      setLoading(false);
+      return;
+    }
+
     // Validate coordinates
-    if (formData.startLocation.coordinates[0] === 0 && formData.startLocation.coordinates[1] === 0) {
+    if (
+      formData.startLocation.coordinates[0] === 0 &&
+      formData.startLocation.coordinates[1] === 0
+    ) {
       setError("Please set start location coordinates");
       setLoading(false);
       return;
@@ -357,7 +374,7 @@ const TourForm = () => {
       formData.startDates.forEach((date, index) => {
         if (date) {
           // Convert DD-MM-YYYY to YYYY-MM-DD format
-          const [day, month, year] = date.split('-');
+          const [day, month, year] = date.split("-");
           const isoDate = `${year}-${month}-${day}`;
           formDataObj.append(`startDates[${index}]`, isoDate);
         }
@@ -432,7 +449,16 @@ const TourForm = () => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Tour creation error:", errorData);
-        throw new Error(errorData.message || errorData.error?.message || "Failed to save tour");
+        
+        // Handle validation errors
+        if (errorData.errors) {
+          const errorMessages = Object.values(errorData.errors).map(err => err.message || err);
+          throw new Error(`Validation errors: ${errorMessages.join(', ')}`);
+        }
+        
+        throw new Error(
+          errorData.message || errorData.error?.message || "Failed to save tour"
+        );
       }
 
       const data = await response.json();
@@ -446,7 +472,10 @@ const TourForm = () => {
       }, 2000);
     } catch (err) {
       console.error("Tour creation error:", err);
-      setError(err.message || "Failed to create tour. Please check all fields and try again.");
+      setError(
+        err.message ||
+          "Failed to create tour. Please check all fields and try again."
+      );
     } finally {
       setLoading(false);
     }
