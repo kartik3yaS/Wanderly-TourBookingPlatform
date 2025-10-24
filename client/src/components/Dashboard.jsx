@@ -193,10 +193,7 @@ const Dashboard = () => {
           )}
           <div className="user-avatar">
             {user.photo ? (
-              <img
-                src={user.photo}
-                alt={user.name}
-              />
+              <img src={user.photo} alt={user.name} />
             ) : (
               <div className="avatar-placeholder">{user.name.charAt(0)}</div>
             )}
@@ -509,7 +506,8 @@ const Dashboard = () => {
                             alt={user.name}
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src = "https://via.placeholder.com/150?text=No+Photo";
+                              e.target.src =
+                                "https://via.placeholder.com/150?text=No+Photo";
                             }}
                           />
                         ) : (
