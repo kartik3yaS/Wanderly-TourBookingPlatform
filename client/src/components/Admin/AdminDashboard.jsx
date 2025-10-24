@@ -213,7 +213,7 @@ const AdminDashboard = () => {
           <div className="user-avatar">
             {user.photo ? (
               <img
-                src={`http://localhost:5000/img/users/${user.photo}`}
+                src={user.photo}
                 alt={user.name}
               />
             ) : (
@@ -357,7 +357,7 @@ const AdminDashboard = () => {
                         <td>
                           {user.photo ? (
                             <img
-                              src={`http://localhost:5000/img/users/${user.photo}`}
+                              src={user.photo}
                               alt={user.name}
                               className="user-thumbnail"
                             />

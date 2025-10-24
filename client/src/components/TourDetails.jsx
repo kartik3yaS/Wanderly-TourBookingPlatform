@@ -184,7 +184,7 @@ const TourDetails = () => {
                 <div key={review._id} className="review-card">
                   <div className="review-user">
                     <img
-                      src={`http://localhost:5000/img/users/${review.user?.photo || "default.jpg"}`}
+                      src={review.user?.photo || "https://via.placeholder.com/150?text=No+Photo"}
                       alt={review.user?.name || "User"}
                       className="review-user-img"
                       onError={(e) => {

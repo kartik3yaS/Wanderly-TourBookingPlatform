@@ -194,7 +194,7 @@ const Dashboard = () => {
           <div className="user-avatar">
             {user.photo ? (
               <img
-                src={`http://localhost:5000/img/users/${user.photo}`}
+                src={user.photo}
                 alt={user.name}
               />
             ) : (
@@ -505,8 +505,12 @@ const Dashboard = () => {
                       <div className="current-photo">
                         {user.photo ? (
                           <img
-                            src={`http://localhost:5000/img/users/${user.photo}`}
+                            src={user.photo}
                             alt={user.name}
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = "https://via.placeholder.com/150?text=No+Photo";
+                            }}
                           />
                         ) : (
                           <div className="avatar-placeholder large">
