@@ -1,6 +1,6 @@
 # Natours - Adventure Tours Application
 
-![Natours Logo](client/public/logo.png)
+![Natours Logo](https://res.cloudinary.com/dh44xrr1z/image/upload/v1761305994/tours/tours/tour-6-cover.jpg)
 
 ## 🌟 Overview
 
@@ -203,7 +203,7 @@ The application uses a modern, responsive design with:
 
 ## 👥 Authors
 
-- Kartikeya Shukla - Initial work - [YourGithub](https://github.com/kartik3yaS)
+- Kartikeya Shukla
 
 ---
 
