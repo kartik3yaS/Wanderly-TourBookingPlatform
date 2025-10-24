@@ -11,7 +11,7 @@ const TourForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [isEditMode, setIsEditMode] = useState(!!tourId);
+  const [isEditMode] = useState(!!tourId);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -26,12 +26,14 @@ const TourForm = () => {
     images: [],
     startDates: [""],
     startLocation: {
+      type: "Point",
       description: "",
       address: "",
       coordinates: [0, 0],
     },
     locations: [
       {
+        type: "Point",
         description: "",
         day: 1,
         coordinates: [0, 0],
@@ -72,7 +74,8 @@ const TourForm = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to fetch tour data");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Failed to fetch tour data (Status: ${response.status})`);
       }
 
       const data = await response.json();
@@ -90,11 +93,17 @@ const TourForm = () => {
         imageCover: null, // Can't pre-fill file inputs
         images: [], // Can't pre-fill file inputs
         startDates: tour.startDates?.length
-          ? tour.startDates.map(
-              (date) => new Date(date).toISOString().split("T")[0]
-            )
+          ? tour.startDates.map((date) => {
+              try {
+                return new Date(date).toISOString().split("T")[0];
+              } catch (e) {
+                console.error("Date parsing error:", e, date);
+                return "";
+              }
+            })
           : [""],
         startLocation: tour.startLocation || {
+          type: "Point",
           description: "",
           address: "",
           coordinates: [0, 0],
@@ -103,6 +112,7 @@ const TourForm = () => {
           ? tour.locations
           : [
               {
+                type: "Point",
                 description: "",
                 day: 1,
                 coordinates: [0, 0],
@@ -246,6 +256,11 @@ const TourForm = () => {
         field === "day" ? parseInt(value, 10) : value;
     }
 
+    // Ensure type is always "Point" for GeoJSON
+    if (!newLocations[index].type) {
+      newLocations[index].type = "Point";
+    }
+
     setFormData({
       ...formData,
       locations: newLocations,
@@ -258,6 +273,7 @@ const TourForm = () => {
       locations: [
         ...formData.locations,
         {
+          type: "Point",
           description: "",
           day: formData.locations.length + 1,
           coordinates: [0, 0],
@@ -289,6 +305,7 @@ const TourForm = () => {
       ...formData,
       startLocation: {
         ...formData.startLocation,
+        type: "Point", // Ensure type is always "Point" for GeoJSON
         coordinates: [lng, lat], // GeoJSON format: [longitude, latitude]
       },
     });
@@ -302,6 +319,15 @@ const TourForm = () => {
     
     console.log("Form submission started");
     console.log("Form data:", formData);
+    console.log("Is edit mode:", isEditMode);
+    console.log("Tour ID:", tourId);
+
+    // Validate tour ID for edit mode
+    if (isEditMode && !tourId) {
+      setError("Tour ID is missing for edit mode");
+      setLoading(false);
+      return;
+    }
 
     // Basic validation
     if (formData.name.length < 10 || formData.name.length > 40) {
@@ -383,7 +409,11 @@ const TourForm = () => {
         }
       });
 
-      // Add start location
+      // Add start location with proper GeoJSON format
+      formDataObj.append(
+        "startLocation[type]",
+        "Point"
+      );
       formDataObj.append(
         "startLocation[description]",
         formData.startLocation.description
@@ -401,8 +431,12 @@ const TourForm = () => {
         formData.startLocation.coordinates[1]
       );
 
-      // Add locations
+      // Add locations with proper GeoJSON format
       formData.locations.forEach((location, index) => {
+        formDataObj.append(
+          `locations[${index}][type]`,
+          "Point"
+        );
         formDataObj.append(
           `locations[${index}][description]`,
           location.description
@@ -440,6 +474,13 @@ const TourForm = () => {
         : `${process.env.REACT_APP_API_URL}/tours`;
 
       const method = isEditMode ? "PATCH" : "POST";
+
+      console.log("Sending request to:", url);
+      console.log("Method:", method);
+      console.log("FormData contents:");
+      for (let pair of formDataObj.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
 
       const response = await fetch(url, {
         method,
