@@ -203,7 +203,7 @@ The application uses a modern, responsive design with:
 
 ## 👥 Authors
 
-- Kartikeya Shukla - Initial work - [YourGithub](https://github.com/kartik3yaS)
+- Kartikeya Shukla
 
 ---
 
