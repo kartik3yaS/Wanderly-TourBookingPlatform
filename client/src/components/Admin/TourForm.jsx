@@ -302,7 +302,7 @@ const TourForm = () => {
 
     // Basic validation
     if (formData.name.length < 10 || formData.name.length > 40) {
-      setError("Tour name must be between 10 and 40 characters");
+      setError(`Tour name must be between 10 and 40 characters (current: ${formData.name.length})`);
       setLoading(false);
       return;
     }
@@ -348,14 +348,19 @@ const TourForm = () => {
       formDataObj.append("name", formData.name);
       formDataObj.append("duration", formData.duration);
       formDataObj.append("maxGroupSize", formData.maxGroupSize);
-      formDataObj.append("difficulty", formData.difficulty);
+      formDataObj.append("difficulty", formData.difficulty.toLowerCase()); // Convert to lowercase
       formDataObj.append("price", formData.price);
       formDataObj.append("summary", formData.summary);
       formDataObj.append("description", formData.description);
 
-      // Add start dates
+      // Add start dates (convert to proper format)
       formData.startDates.forEach((date, index) => {
-        if (date) formDataObj.append(`startDates[${index}]`, date);
+        if (date) {
+          // Convert DD-MM-YYYY to YYYY-MM-DD format
+          const [day, month, year] = date.split('-');
+          const isoDate = `${year}-${month}-${day}`;
+          formDataObj.append(`startDates[${index}]`, isoDate);
+        }
       });
 
       // Add start location
@@ -440,7 +445,8 @@ const TourForm = () => {
         navigate("/admin");
       }, 2000);
     } catch (err) {
-      setError(err.message);
+      console.error("Tour creation error:", err);
+      setError(err.message || "Failed to create tour. Please check all fields and try again.");
     } finally {
       setLoading(false);
     }
