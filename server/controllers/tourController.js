@@ -4,6 +4,10 @@ const Tour = require('./../models/tourModel');
 const catchAsync = require('./../utils/catchAsync');
 const factory = require('./handlerFactory');
 const AppError = require('./../utils/appError');
+const {
+  uploadToCloudinary,
+  uploadMultipleToCloudinary,
+} = require('./../utils/cloudinary');
 
 const multerStorage = multer.memoryStorage();
 
@@ -34,12 +38,23 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
   // 1) Cover image
   if (req.files.imageCover) {
     const tourId = req.params.id || 'new';
-    req.body.imageCover = `tour-${tourId}-${Date.now()}-cover.jpeg`;
-    await sharp(req.files.imageCover[0].buffer)
+    const filename = `tours/tour-${tourId}-${Date.now()}-cover.jpeg`;
+
+    // Process image with Sharp
+    const processedImage = await sharp(req.files.imageCover[0].buffer)
       .resize(2000, 1333)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
-      .toFile(`public/img/tours/${req.body.imageCover}`);
+      .toBuffer();
+
+    // Upload to Cloudinary
+    const publicId = `tour-${tourId}-${Date.now()}-cover`;
+    const imageUrl = await uploadToCloudinary(
+      processedImage,
+      'tours',
+      publicId
+    );
+    req.body.imageCover = imageUrl;
   }
 
   // 2) Images
@@ -49,15 +64,23 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
 
     await Promise.all(
       req.files.images.map(async (file, i) => {
-        const filename = `tour-${tourId}-${Date.now()}-${i + 1}.jpeg`;
+        const filename = `tours/tour-${tourId}-${Date.now()}-${i + 1}.jpeg`;
 
-        await sharp(file.buffer)
+        // Process image with Sharp
+        const processedImage = await sharp(file.buffer)
           .resize(2000, 1333)
           .toFormat('jpeg')
           .jpeg({ quality: 90 })
-          .toFile(`public/img/tours/${filename}`);
+          .toBuffer();
 
-        req.body.images.push(filename);
+        // Upload to Cloudinary
+        const publicId = `tour-${tourId}-${Date.now()}-${i + 1}`;
+        const imageUrl = await uploadToCloudinary(
+          processedImage,
+          'tours',
+          publicId
+        );
+        req.body.images.push(imageUrl);
       })
     );
   }

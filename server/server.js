@@ -7,7 +7,12 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: './config.env' });
+dotenv.config({
+  path:
+    process.env.NODE_ENV === 'production'
+      ? './config.env.production'
+      : './config.env',
+});
 const app = require('./app');
 
 const DB = process.env.DATABASE.replace(

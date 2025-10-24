@@ -33,8 +33,6 @@ const Login = () => {
       );
 
       console.log("Server response status:", response.status);
-      const data = await response.json();
-      console.log("Server response data:", data);
 
       if (!response.ok) {
         const errorText = await response.text(); // Read as text
@@ -43,6 +41,9 @@ const Login = () => {
         setLoading(false);
         return;
       }
+
+      const data = await response.json();
+      console.log("Server response data:", data);
 
       // Get token from either cookie or response
       const token = data.token;
