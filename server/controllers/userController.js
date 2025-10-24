@@ -78,7 +78,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
   // 2) Filtered out unwanted fields names that are not allowed to be updated
   const filteredBody = filterObj(req.body, 'name', 'email');
-  if (req.file) filteredBody.photo = req.file.filename;
+  // Photo is already set to Cloudinary URL by resizeUserPhoto middleware
 
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
@@ -176,9 +176,7 @@ exports.updateUser = catchAsync(async (req, res, next) => {
     };
 
     // 3) Handle photo upload
-    if (req.file) {
-      updateData.photo = req.file.filename;
-    }
+    // Photo is already set to Cloudinary URL by resizeUserPhoto middleware
 
     // 4) Handle password update if both password fields are provided
     if (req.body.password && req.body.passwordConfirm) {
