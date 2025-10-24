@@ -42,8 +42,8 @@ const Signup = () => {
       );
 
       if (!response.ok) {
-        const errorText = await response.text();
-        setError(errorText);
+        const errorData = await response.json();
+        setError(errorData.message || "Signup failed. Please try again.");
         setLoading(false);
         return;
       }
