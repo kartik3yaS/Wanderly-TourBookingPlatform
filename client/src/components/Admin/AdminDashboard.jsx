@@ -25,6 +25,23 @@ const AdminDashboard = () => {
     fetchData(activeTab);
   }, [activeTab, isAdmin, navigate]);
 
+  // Refresh data when component becomes visible (e.g., returning from edit page)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchData(activeTab);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleVisibilityChange);
+    };
+  }, [activeTab]);
+
   const fetchData = async (tab) => {
     setLoading(true);
     setError("");
@@ -364,6 +381,10 @@ const AdminDashboard = () => {
                               src={user.photo}
                               alt={user.name}
                               className="user-thumbnail"
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "https://via.placeholder.com/100x100?text=No+Photo";
+                              }}
                             />
                           ) : (
                             <div className="user-thumbnail-placeholder">
