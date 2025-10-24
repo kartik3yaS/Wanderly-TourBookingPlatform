@@ -293,9 +293,13 @@ const AdminDashboard = () => {
                       <tr key={tour.id}>
                         <td>
                           <img
-                            src={`http://localhost:5000/img/tours/${tour.imageCover}`}
+                            src={tour.imageCover}
                             alt={tour.name}
                             className="tour-thumbnail"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = "https://via.placeholder.com/100x100?text=No+Image";
+                            }}
                           />
                         </td>
                         <td>{tour.name}</td>
