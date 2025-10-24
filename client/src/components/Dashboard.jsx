@@ -251,8 +251,13 @@ const Dashboard = () => {
                   <div className="tour-card" key={tour.id}>
                     <div className="tour-image">
                       <img
-                        src={`http://localhost:5000/img/tours/${tour.imageCover}`}
+                        src={tour.imageCover}
                         alt={tour.name}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src =
+                            "https://via.placeholder.com/300x200?text=No+Image";
+                        }}
                       />
                       <span className="tour-price">${tour.price}</span>
                     </div>
@@ -317,7 +322,7 @@ const Dashboard = () => {
                         <div className="booking-image">
                           {booking.tour && (
                             <img
-                              src={`http://localhost:5000/img/tours/${booking.tour.imageCover}`}
+                              src={booking.tour.imageCover}
                               alt={booking.tour.name}
                               onError={(e) => {
                                 e.target.onerror = null;

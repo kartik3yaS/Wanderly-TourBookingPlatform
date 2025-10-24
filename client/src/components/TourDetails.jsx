@@ -114,7 +114,7 @@ const TourDetails = () => {
       <div
         className="tour-header"
         style={{
-          backgroundImage: `url(http://localhost:5000/img/tours/${tour.imageCover})`,
+          backgroundImage: `url(${tour.imageCover})`,
         }}
       >
         <div className="tour-header-overlay">
@@ -151,7 +151,7 @@ const TourDetails = () => {
           {tour.images?.map((image, index) => (
             <div key={index} className="tour-image">
               <img
-                src={`http://localhost:5000/img/tours/${image}`}
+                src={image}
                 alt={`Tour ${index + 1}`}
                 onError={(e) => {
                   e.target.onerror = null;
