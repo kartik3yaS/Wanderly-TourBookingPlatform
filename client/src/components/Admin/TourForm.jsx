@@ -299,6 +299,9 @@ const TourForm = () => {
     setError("");
     setSuccess("");
     setLoading(true);
+    
+    console.log("Form submission started");
+    console.log("Form data:", formData);
 
     // Basic validation
     if (formData.name.length < 10 || formData.name.length > 40) {
@@ -447,8 +450,16 @@ const TourForm = () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (e) {
+          errorData = { message: "Invalid response from server" };
+        }
+        
         console.error("Tour creation error:", errorData);
+        console.error("Response status:", response.status);
+        console.error("Response headers:", response.headers);
         
         // Handle validation errors
         if (errorData.errors) {
@@ -456,9 +467,29 @@ const TourForm = () => {
           throw new Error(`Validation errors: ${errorMessages.join(', ')}`);
         }
         
-        throw new Error(
-          errorData.message || errorData.error?.message || "Failed to save tour"
-        );
+        // Handle different error types
+        if (errorData.message) {
+          throw new Error(errorData.message);
+        }
+        
+        if (errorData.error?.message) {
+          throw new Error(errorData.error.message);
+        }
+        
+        // Generic error based on status code
+        if (response.status === 400) {
+          throw new Error("Bad request - please check your input data");
+        } else if (response.status === 401) {
+          throw new Error("Unauthorized - please login again");
+        } else if (response.status === 403) {
+          throw new Error("Forbidden - you don't have permission to perform this action");
+        } else if (response.status === 404) {
+          throw new Error("Tour not found");
+        } else if (response.status === 500) {
+          throw new Error("Server error - please try again later");
+        } else {
+          throw new Error(`Failed to save tour (Status: ${response.status})`);
+        }
       }
 
       const data = await response.json();
@@ -472,10 +503,13 @@ const TourForm = () => {
       }, 2000);
     } catch (err) {
       console.error("Tour creation error:", err);
-      setError(
-        err.message ||
-          "Failed to create tour. Please check all fields and try again."
-      );
+      console.error("Error stack:", err.stack);
+      
+      // Always show a meaningful error message
+      const errorMessage = err.message || 
+        "Failed to create tour. Please check all fields and try again.";
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
