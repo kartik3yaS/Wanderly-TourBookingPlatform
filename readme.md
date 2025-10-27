@@ -110,8 +110,23 @@ Natours is a modern, full-stack web application for booking adventure tours. Bui
 
 3. **Environment Setup**
 
+   Create a `config.env` file in the `server` directory. You can copy the example file and update it with your credentials:
+
    ```bash
-   # In server directory, create config.env file
+   # On macOS/Linux
+   cd server
+   cp config.env.example config.env
+
+   # On Windows
+   cd server
+   copy config.env.example config.env
+
+   # Then edit config.env with your actual credentials
+   ```
+
+   The `config.env` file should contain the following variables:
+
+   ```bash
    NODE_ENV=development
    PORT=5000
    DATABASE=your_mongodb_connection_string
@@ -120,7 +135,34 @@ Natours is a modern, full-stack web application for booking adventure tours. Bui
    JWT_EXPIRES_IN=90d
    JWT_COOKIE_EXPIRES_IN=90
    STRIPE_SECRET_KEY=your_stripe_secret_key
+   FRONTEND_URL=http://localhost:3000
+
+   # Cloudinary Configuration (for image uploads)
+   CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+   CLOUDINARY_API_KEY=your_cloudinary_api_key
+   CLOUDINARY_API_SECRET=your_cloudinary_api_secret
    ```
+
+   ### Getting API Keys
+
+   **Cloudinary Setup** (Required for image uploads):
+
+   1. Sign up for a free account at [Cloudinary](https://cloudinary.com/)
+   2. Go to your Dashboard
+   3. Copy your Cloud Name, API Key, and API Secret
+   4. Add them to your `config.env` file
+
+   **Stripe Setup** (Required for payments):
+
+   1. Create an account at [Stripe](https://stripe.com/)
+   2. Get your test API keys from the Dashboard
+   3. Add them to your `config.env` file
+
+   **MongoDB Setup**:
+
+   1. Create a cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   2. Get your connection string
+   3. Replace `<PASSWORD>` with your database password
 
 4. **Start the application**
 
