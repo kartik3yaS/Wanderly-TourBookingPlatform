@@ -617,16 +617,28 @@
     display: flex;
     overflow-x: auto;
     padding: 0 15px;
+    gap: 5px;
+    -webkit-overflow-scrolling: touch;
   }
 
   .dashboard-nav li {
     margin-bottom: 0;
-    margin-right: 5px;
+    margin-right: 0;
+    flex-shrink: 0;
   }
 
   .dashboard-nav button {
-    padding: 10px 15px;
+    padding: 12px 16px;
     white-space: nowrap;
+    min-width: max-content;
+    font-size: 14px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .dashboard-nav li.active button {
+    border-left: none;
+    border-bottom: 3px solid #55c57a;
   }
 
   .dashboard-main {
@@ -655,18 +667,97 @@
 @media (max-width: 576px) {
   .dashboard-header {
     padding: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dashboard-header .user-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .logo h1 {
+    font-size: 20px;
   }
 
   .user-name {
     display: none;
   }
 
+  .dashboard-main {
+    padding: 15px;
+  }
+
+  .dashboard-main h2 {
+    font-size: 20px;
+  }
+
   .tours-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .tour-card {
+    margin-bottom: 0;
+  }
+
+  .tour-details {
+    padding: 15px;
+  }
+
+  .tour-details h3 {
+    font-size: 16px;
   }
 
   .photo-upload {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .current-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .settings-card {
+    padding: 20px;
+  }
+
+  .dashboard-nav button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-nav button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .tour-details {
+    padding: 12px;
+  }
+
+  .tour-details h3 {
+    font-size: 15px;
+  }
+
+  .tour-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .booking-details {
+    padding: 15px;
+  }
+
+  .booking-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .review-card {
+    padding: 15px;
   }
 }

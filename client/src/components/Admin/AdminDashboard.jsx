@@ -33,12 +33,12 @@ const AdminDashboard = () => {
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", handleVisibilityChange);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleVisibilityChange);
     };
   }, [activeTab]);
 
@@ -229,10 +229,7 @@ const AdminDashboard = () => {
           <span className="admin-badge">Administrator</span>
           <div className="user-avatar">
             {user.photo ? (
-              <img
-                src={user.photo}
-                alt={user.name}
-              />
+              <img src={user.photo} alt={user.name} />
             ) : (
               <div className="avatar-placeholder">{user.name.charAt(0)}</div>
             )}
@@ -293,7 +290,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="admin-table-container">
-                <table className="admin-table">
+                <table className="admin-table tours-table">
                   <thead>
                     <tr>
                       <th>Image</th>
@@ -315,7 +312,8 @@ const AdminDashboard = () => {
                             className="tour-thumbnail"
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src = "https://via.placeholder.com/100x100?text=No+Image";
+                              e.target.src =
+                                "https://via.placeholder.com/100x100?text=No+Image";
                             }}
                           />
                         </td>
@@ -361,7 +359,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="admin-table-container">
-                <table className="admin-table">
+                <table className="admin-table users-table">
                   <thead>
                     <tr>
                       <th>Photo</th>
@@ -383,7 +381,8 @@ const AdminDashboard = () => {
                               className="user-thumbnail"
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = "https://via.placeholder.com/100x100?text=No+Photo";
+                                e.target.src =
+                                  "https://via.placeholder.com/100x100?text=No+Photo";
                               }}
                             />
                           ) : (
@@ -431,9 +430,10 @@ const AdminDashboard = () => {
               </div>
 
               <div className="admin-table-container">
-                <table className="admin-table">
+                <table className="admin-table bookings-table">
                   <thead>
                     <tr>
+                      <th>Image</th>
                       <th>Tour</th>
                       <th>User</th>
                       <th>Price</th>
@@ -445,6 +445,24 @@ const AdminDashboard = () => {
                   <tbody>
                     {bookings.map((booking) => (
                       <tr key={booking._id}>
+                        <td>
+                          {booking.tour && booking.tour.imageCover ? (
+                            <img
+                              src={booking.tour.imageCover}
+                              alt={booking.tour.name}
+                              className="tour-thumbnail"
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src =
+                                  "https://via.placeholder.com/100x100?text=No+Image";
+                              }}
+                            />
+                          ) : (
+                            <div className="tour-thumbnail-placeholder">
+                              <span>No Image</span>
+                            </div>
+                          )}
+                        </td>
                         <td>{booking.tour ? booking.tour.name : "N/A"}</td>
                         <td>{booking.user ? booking.user.name : "N/A"}</td>
                         <td>${booking.price}</td>
