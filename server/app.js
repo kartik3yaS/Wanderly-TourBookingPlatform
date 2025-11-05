@@ -25,7 +25,9 @@ const healthRouter = require('./routes/healthRoutes');
 // Start express app
 const app = express();
 
-app.enable('trust proxy', false);
+// Trust proxy for Render and other cloud platforms
+// This is required for correct IP address detection behind proxies
+app.set('trust proxy', 1);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -70,10 +72,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Limit requests from same API
+// Note: trustProxy validation warning may appear but won't break functionality
+// Trust proxy is required for proper IP detection on Render/cloud platforms
 const limiter = rateLimit({
   max: 200,
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour!',
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 app.use('/api', limiter);
 
