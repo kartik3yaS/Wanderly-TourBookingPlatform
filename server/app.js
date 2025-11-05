@@ -20,6 +20,7 @@ const bookingRouter = require('./routes/bookingRoutes');
 const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 const adminRouter = require('./routes/adminRoutes');
+const healthRouter = require('./routes/healthRoutes');
 
 // Start express app
 const app = express();
@@ -119,6 +120,7 @@ app.use((req, res, next) => {
 
 // 3) ROUTES
 app.use('/', viewRouter);
+app.use('/api/v1/health', healthRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
